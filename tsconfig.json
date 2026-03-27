@@ -10,7 +10,11 @@
     "esModuleInterop": true,
     "strict": true,
     "jsx": "react-jsx",
-    "noEmit": false
+    "noEmit": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["node"]
   },
   "include": ["src"]
 }

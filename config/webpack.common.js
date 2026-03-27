@@ -11,6 +11,14 @@ module.exports = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      "@": path.resolve(__dirname, "../src"),
+    },
+  },
+  dotenv: {
+    prefix: "APP_PUBLIC_",
+    dir: path.resolve(__dirname, "../"),
+    template: [".env", ".env.local", ".env.[mode]", ".env.[mode].local"],
   },
   module: {
     rules: [
