@@ -2,11 +2,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development",
   entry: "./src/main.tsx",
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, "../dist"),
+    filename: "bundle.[contenthash].js",
     clean: true,
     assetModuleFilename: "assets/[hash][ext][query]",
   },
@@ -29,14 +28,6 @@ module.exports = {
         type: "asset/resource",
       },
     ],
-  },
-  devServer: {
-    port: 3000,
-    open: true,
-    static: {
-      directory: path.join(__dirname, "public"),
-    },
-    hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
