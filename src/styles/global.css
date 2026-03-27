@@ -22,3 +22,16 @@ img {
   width: 120px;
   height: auto;
 }
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
