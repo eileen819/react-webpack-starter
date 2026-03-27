@@ -27,9 +27,51 @@ module.exports = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
+      // CSS Modules
+      {
+        test: /\.module\.css$/i,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+              },
+            },
+          },
+        ],
+      },
+
+      // Global CSS
       {
         test: /\.css$/i,
+        exclude: /\.module\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+
+      // SCSS Modules
+      {
+        test: /\.module\.scss$/i,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+              },
+            },
+          },
+          "sass-loader",
+        ],
+      },
+
+      // Global SCSS
+      {
+        test: /\.scss$/i,
+        exclude: /\.module\.scss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
