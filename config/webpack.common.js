@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
+module.exports = (styleLoader) => ({
   entry: "./src/main.tsx",
   output: {
     path: path.resolve(__dirname, "../dist"),
@@ -27,11 +27,10 @@ module.exports = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
-      // CSS Modules
       {
         test: /\.module\.css$/i,
         use: [
-          "style-loader",
+          styleLoader,
           {
             loader: "css-loader",
             options: {
@@ -42,19 +41,15 @@ module.exports = {
           },
         ],
       },
-
-      // Global CSS
       {
         test: /\.css$/i,
         exclude: /\.module\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [styleLoader, "css-loader"],
       },
-
-      // SCSS Modules
       {
         test: /\.module\.scss$/i,
         use: [
-          "style-loader",
+          styleLoader,
           {
             loader: "css-loader",
             options: {
@@ -66,12 +61,10 @@ module.exports = {
           "sass-loader",
         ],
       },
-
-      // Global SCSS
       {
         test: /\.scss$/i,
         exclude: /\.module\.scss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [styleLoader, "css-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
@@ -84,4 +77,4 @@ module.exports = {
       template: "./public/index.html",
     }),
   ],
-};
+});
